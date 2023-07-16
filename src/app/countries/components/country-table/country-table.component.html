@@ -1,5 +1,5 @@
 <div *ngIf="countries.length === 0; else table" class="alert alert-warning text-center">
-  No hay países para mostrar
+  Selecciona una región para desplegar la información
 </div>
 
 
@@ -13,7 +13,7 @@
         <th>Nombre</th>
         <th>Capital</th>
         <th>Poblacion</th>
-        <th>Opciones</th>
+        <th>Info</th>
       </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
         <td>{{ country.name.common }}</td>
         <td>{{ country.capital }}</td>
         <td>{{ country.population | number }}</td>
-        <td><a href="#">Ver más…</a></td>
+        <td><button type="button" class="btn btn-primary" [routerLink]="['/countries/by', country.cca3]"><i class="bi bi-eye"></i></button></td>
       </tr>
     </tbody>
 

@@ -11,30 +11,68 @@
       <hr>
     </div>
 
-  <div class="row">
-    <div class="col-4">
-      <h3>Bandera:</h3>
-      <img [src]="country.flags.svg" [alt]="country.name.common" class="img-thumbnail">
-    </div>
+  <div class="row mb-4">
+
     <div class="col">
       <h3>Información</h3>
       <ul class="list-group">
         <li class="list-group-item">
-          <strong>Población:</strong> {{ country.population | number }}
+          <strong>Población: </strong> {{ country.population | number }}
         </li>
         <li class="list-group-item">
-          <strong>Código:</strong> {{ country.cca3 | number }}
+          <strong>Código: </strong> {{ country.cca3 }}
+        </li>
+        <li class="list-group-item">
+          <strong>Capital: </strong> {{ country.capital }}
+        </li>
+        <li class="list-group-item">
+          <strong>Idiomas: </strong> {{ languages }}
+        </li>
+        <li class="list-group-item">
+          <strong>Mapa: </strong>
+          <a
+            [href]="country.maps.googleMaps"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="link-underline link-underline-opacity-0"
+          >
+            <strong>Google Maps</strong>
+          </a>
         </li>
       </ul>
     </div>
+    <div class="col-5">
+      <h3>Bandera:</h3>
+      <img [src]="country.flags.svg" [alt]="country.name.common" class="img-thumbnail">
+    </div>
   </div>
 
-  <div class="row mt-2">
+  <hr>
+
+  <div class="row">
     <div class="col">
       <h3>Traducciones</h3>
-      <div class="d-flex flex-wrap">
-        <span class="badge bg-primary m-1">{{ country.translations |  }}</span>
-
+      <div class="d-flex">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>Idioma</th>
+              <th>Oficial</th>
+              <th>Común</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let translation of translationsArray | keyvalue; let i = index">
+              <tr class="align-middle">
+                <td>{{ i + 1 }}</td>
+                <td><h5><span class="badge bg-primary mt-2">{{ translation.key | titlecase}}</span></h5></td>
+                <td>{{ translation.value.official }}</td>
+                <td>{{ translation.value.common }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -8,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
 
+  clearLocalStorage(){
+    localStorage.clear();
+    location.reload();
+  }
+
 }
